@@ -10,7 +10,7 @@ public class OrderRoutes extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         // Stage 1: Order Ingestion via HTTP endpoint
-        from("jetty:http://localhost:8081/orders")
+        from("jetty:http://0.0.0.0:8080/orders")
                 .unmarshal().json(OrderDTO.class) // Convert JSON to DTO
                 .process(new OrderValidator()) // Validate DTO
                 .log("Ingesting valid order: ${body}")
